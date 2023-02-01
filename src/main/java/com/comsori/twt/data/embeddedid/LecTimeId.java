@@ -13,12 +13,10 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class LecTimeId implements Serializable {
-    @Id
+
     private String lecture;
 
-    @Id
     private WeekType lec_week;
 
-    @Id
     private LocalTime lec_start;
 }

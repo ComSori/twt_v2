@@ -1,27 +1,28 @@
 package com.comsori.twt.data.entity;
 
+import com.comsori.twt.data.embeddedid.BelongedTeamId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserLec {
+@IdClass(BelongedTeamId.class)
+public class BelongedTeam {
     @Id
-    @Column(name = "user_lec_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "lec_code", nullable = false)
-    private Lecture lecture;
+    @JoinColumn(name = "team_id")
+    private Team team;
 }

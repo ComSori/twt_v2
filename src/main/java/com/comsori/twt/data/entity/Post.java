@@ -13,10 +13,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Post {
     @Id
+    @Column(name = "post_id")
     private int post_id;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "team_id")
     private Team team;
 
     @Lob

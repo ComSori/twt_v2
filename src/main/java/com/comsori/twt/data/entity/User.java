@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class User {
     @Id
+    @Column(name = "user_id")
     private String user_id;
 
     @Column(nullable = false)
@@ -33,9 +34,11 @@ public class User {
     private String user_university;
 
     @OneToMany(mappedBy = "user")
+    private List<Schedule> schedule;
+
+    @OneToMany(mappedBy = "user")
     private List<UserLec> user_lec;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Team team;
+    @OneToMany(mappedBy = "user")
+    private List<BelongedTeam> belongedTeam;
 }

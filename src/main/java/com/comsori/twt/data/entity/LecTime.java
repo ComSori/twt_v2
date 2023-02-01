@@ -19,7 +19,7 @@ import java.time.LocalTime;
 public class LecTime {
     @Id
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "lec_code")
     private Lecture lecture;
 
     @Id

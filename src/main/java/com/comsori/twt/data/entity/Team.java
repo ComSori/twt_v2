@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Team {
     @Id
+    @Column(name = "team_id")
     private String team_id;
 
     @Column(nullable = false)
@@ -29,9 +30,9 @@ public class Team {
     @Column
     private String team_cloud;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
-    private List<Post> posts;
+    @OneToMany(mappedBy = "team")
+    private List<Post> post;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
-    private List<User> user;
+    @OneToMany(mappedBy = "team")
+    private List<BelongedTeam> belongedTeam;
 }

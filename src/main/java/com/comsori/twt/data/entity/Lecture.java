@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Lecture {
     @Id
+    @Column(name = "lec_code")
     private String lec_code;
 
     @Column(nullable = false)
