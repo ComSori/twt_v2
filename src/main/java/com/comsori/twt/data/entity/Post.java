@@ -14,18 +14,18 @@ import lombok.NoArgsConstructor;
 public class Post {
     @Id
     @Column(name = "post_id")
-    private int post_id;
+    private int postId;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
 
     @Lob
-    private String post_content;
+    private String postContent;
 
     @Column
-    private int post_positionX;
+    private int postPositionX;
 
     @Column
-    private int post_positionY;
+    private int postPositionY;
 }

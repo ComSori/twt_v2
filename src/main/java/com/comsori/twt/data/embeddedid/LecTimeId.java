@@ -16,7 +16,7 @@ public class LecTimeId implements Serializable {
 
     private String lecture;
 
-    private WeekType lec_week;
+    private WeekType lecWeek;
 
-    private LocalTime lec_start;
+    private LocalTime lecStart;
 }

@@ -24,11 +24,11 @@ public class LecTime {
 
     @Id
     @Enumerated(EnumType.STRING)
-    private WeekType lec_week;
+    private WeekType lecWeek;
 
     @Id
-    private LocalTime lec_start;
+    private LocalTime lecStart;
 
     @Column(nullable = false)
-    private LocalTime lec_end;
+    private LocalTime lecEnd;
 }

@@ -15,20 +15,20 @@ import java.util.List;
 @NoArgsConstructor
 public class Team {
     @Id
-    @Column(name = "team_id")
-    private String team_id;
+    @Column
+    private String teamId;
 
     @Column(nullable = false)
-    private String team_name;
+    private String teamName;
 
     @Column(nullable = false)
-    private String team_password;
+    private String teamPassword;
 
     @Column
-    private String team_leader;
+    private String teamLeader;
 
     @Column
-    private String team_cloud;
+    private String teamCloud;
 
     @OneToMany(mappedBy = "team")
     private List<Post> post;
