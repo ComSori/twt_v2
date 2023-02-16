@@ -1,4 +1,4 @@
-// src/main/frontend/src/setProxy.js
+// src/main/frontend/src/setupProxy.js
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
