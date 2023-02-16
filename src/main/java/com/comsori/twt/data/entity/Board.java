@@ -17,18 +17,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Board {
     @Id
-    @Column(name = "board_id")
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int board_id;
+    private int boardId;
 
     @Column
-    private String board_title;
+    private String boardTitle;
 
     @Lob
-    private String board_content;
+    private String boardContent;
 
     @Column
-    private Boolean board_notice;
+    private Boolean boardNotice;
 
     @ManyToOne
     @JoinColumns({
@@ -38,8 +38,8 @@ public class Board {
     private BelongedTeam belongedTeam;
 
     @CreatedDate
-    private LocalDateTime board_createDate;
+    private LocalDateTime boardCreateDate;
 
     @LastModifiedDate
-    private LocalDateTime board_modifiedDate;
+    private LocalDateTime boardModifiedDate;
 }

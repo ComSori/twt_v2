@@ -16,17 +16,17 @@ import java.util.List;
 public class Lecture {
     @Id
     @Column(name = "lec_code")
-    private String lec_code;
+    private String lecCode;
 
     @Column(nullable = false)
-    private String lec_name;
+    private String lecName;
 
     @Column(nullable = false)
-    private String lec_professor;
+    private String lecProfessor;
 
     @OneToMany(mappedBy = "lecture", fetch = FetchType.LAZY)
     private List<LecTime> lecTime;
 
     @OneToMany(mappedBy = "lecture", fetch = FetchType.LAZY)
-    private List<UserLec> lec_user;
+    private List<UserLec> lecUser;
 }

@@ -17,21 +17,21 @@ public class Schedule {
     @Id
     @Column(name = "schedule_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int schedule_id;
+    private int scheduleId;
 
     @Column
-    private String schedule_title;
+    private String scheduleTitle;
 
     @Column
-    private String schedule_detail;
+    private String scheduleDetail;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @Column(nullable = false)
-    private LocalDateTime schedule_start;
+    private LocalDateTime scheduleStart;
 
     @Column(nullable = false)
-    private LocalDateTime schedule_end;
+    private LocalDateTime scheduleEnd;
 }

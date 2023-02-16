@@ -15,29 +15,32 @@ import java.util.List;
 @NoArgsConstructor
 public class User {
     @Id
-    @Column(name = "user_id")
-    private String user_id;
+    @Column
+    private String userId;
 
     @Column(nullable = false)
-    private String user_name;
+    private String userName;
 
     @Column(nullable = false)
-    private String user_password;
+    private String userPassword;
 
     @Column
-    private String user_email;
+    private String userEmail;
 
     @Column
-    private String user_phone;
+    private String userPhone;
 
     @Column
-    private String user_university;
+    private String userUniversity;
+
+    @Column
+    private String userDefaultTeam;
 
     @OneToMany(mappedBy = "user")
     private List<Schedule> schedule;
 
     @OneToMany(mappedBy = "user")
-    private List<UserLec> user_lec;
+    private List<UserLec> userLec;
 
     @OneToMany(mappedBy = "user")
     private List<BelongedTeam> belongedTeam;
