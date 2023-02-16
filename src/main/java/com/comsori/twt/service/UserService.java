@@ -1,6 +1,7 @@
 package com.comsori.twt.service;
 
 import com.comsori.twt.data.dto.UserJoinDto;
+import com.comsori.twt.data.dto.UserUpdateDto;
 import com.comsori.twt.data.entity.User;
 import com.comsori.twt.repository.UserRepository;
 import org.springframework.security.config.core.userdetails.UserDetailsResourceFactoryBean;
@@ -27,19 +28,20 @@ public class UserService {
 
     @Transactional
     // 회원 수정시 세션도 바꾸는 코드 추가하기
-    public void updateUser(User user) {
-        User selectedUser = userRepository.findByUserId(user.getUserId())
+    public void updateUser(UserUpdateDto userUpdateDto) {
+        System.out.println(userUpdateDto.getUserId());
+        User selectedUser = userRepository.findByUserId(userUpdateDto.getUserId())
                 .orElseThrow(() -> {
                     return new IllegalArgumentException("존재하지 않는 회원입니다.");
                 });
 
-        String encPwd = bCryptPasswordEncoder.encode(user.getUserPassword());
+        String encPwd = bCryptPasswordEncoder.encode(userUpdateDto.getUserPassword());
         selectedUser.setUserPassword(encPwd);
-        selectedUser.setUserName(user.getUserName());
-        selectedUser.setUserEmail(user.getUserEmail());
-        selectedUser.setUserPhone(user.getUserPhone());
-        selectedUser.setUserUniversity(user.getUserUniversity());
-        selectedUser.setUserDefaultTeam(user.getUserDefaultTeam());
+        selectedUser.setUserName(userUpdateDto.getUserName());
+        selectedUser.setUserEmail(userUpdateDto.getUserEmail());
+        selectedUser.setUserPhone(userUpdateDto.getUserPhone());
+        selectedUser.setUserUniversity(userUpdateDto.getUserUniversity());
+        selectedUser.setUserDefaultTeam(userUpdateDto.getUserDefaultTeam());
 
     }
 

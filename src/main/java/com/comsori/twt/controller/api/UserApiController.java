@@ -1,11 +1,14 @@
 package com.comsori.twt.controller.api;
 
 import com.comsori.twt.data.dto.UserJoinDto;
-import com.comsori.twt.data.entity.User;
+import com.comsori.twt.data.dto.UserUpdateDto;
 import com.comsori.twt.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 // 아이디, 비밀번호, 이메일 등 유효성 검증 기능 추가하기
 @RestController
@@ -17,29 +20,32 @@ public class UserApiController {
         this.userService = userService;
     }
 
-    // 같은 아이디 있으면 돌려보내기.
     @PostMapping("/user/signUp")
-    public ResponseEntity<String> userAdd(@RequestBody UserJoinDto userJoinDto) {
+    public ResponseEntity userAdd(@RequestBody UserJoinDto userJoinDto) {
+
+        // 중복 확인 안하고 누를 경우
+//        if (userService.validationCheckUser(userJoinDto.getUserId())) {
+//            return new ResponseEntity<String>("아이디 중복확인을 해주세요!", HttpStatus.BAD_REQUEST);
+//        }
         userService.insertUser(userJoinDto);
         return new ResponseEntity<String>("회원가입 완료", HttpStatus.OK);
     }
 
     @PutMapping("/user/update")
-    public ResponseEntity<String> userModify(@RequestBody User user) {
-        userService.updateUser(user);
+    public ResponseEntity userModify(@RequestBody UserUpdateDto userUpdateDto) {
+        userService.updateUser(userUpdateDto);
         return new ResponseEntity<String>("회원수정 완료", HttpStatus.OK);
     }
 
     @DeleteMapping("/user/delete")
-    public ResponseEntity<String> userRemove(String userId) {
-        userService.deleteUser(userId);
+    public ResponseEntity userRemove(@RequestBody Map<String, String> userId) {
+        userService.deleteUser(userId.get("userId"));
         return new ResponseEntity<String>("회원탈퇴 완료", HttpStatus.OK);
     }
 
     @PostMapping("/user/check")
-    public ResponseEntity<Boolean> userCheck(String userId) {
-        boolean exist = userService.validationCheckUser(userId);
-
-        return new ResponseEntity<Boolean>(exist, HttpStatus.OK);
+    public ResponseEntity userCheck(@RequestBody Map<String, String> userId) {
+        boolean isExist = userService.validationCheckUser(userId.get("userId"));
+        return new ResponseEntity<String>("isExist : " + isExist, HttpStatus.OK);
     }
 }
