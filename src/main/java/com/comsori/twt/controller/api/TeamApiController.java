@@ -10,7 +10,7 @@ public class TeamApiController {
 
     @PostMapping("/build")
     public ResponseEntity<String> teamBuild(@RequestBody TeamDto teamDto){
-        teamService.
+
     }
 
     @PostMapping("/join")
