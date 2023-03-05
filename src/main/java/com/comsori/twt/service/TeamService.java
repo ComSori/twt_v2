@@ -1,14 +1,16 @@
 package com.comsori.twt.service;
 
-import com.comsori.twt.repository.TeamRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.comsori.twt.data.dto.TeamDto;
+import com.comsori.twt.data.dto.TeamResponseDto;
+import com.comsori.twt.data.entity.Team;
 
-@Service
-public class TeamService {
+public interface TeamService {
+    TeamResponseDto saveTeam(TeamDto teamDto);
 
-    private TeamRepository teamRepository;
+    TeamResponseDto getTeam(TeamDto teamDto);
 
-    @Override
+    TeamResponseDto updateTeam(TeamDto teamDto);
+
+    void deleteTeam(String teamId);
 
 }

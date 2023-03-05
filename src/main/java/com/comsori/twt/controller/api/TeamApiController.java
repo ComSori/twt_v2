@@ -1,5 +1,6 @@
 package com.comsori.twt.controller.api;
 
+import com.comsori.twt.data.dto.TeamDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class TeamApiController {
 
     @PostMapping("/build")
-    public ResponseEntity<String> teamBuild(@RequestBody TeamBuildDto teamBuildDto){
+    public ResponseEntity<String> teamBuild(@RequestBody TeamDto teamDto){
         teamService.
     }
 
