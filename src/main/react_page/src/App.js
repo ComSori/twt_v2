@@ -1,21 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios'
 
+import './App.css';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
 function App() {
-  const [hello, setHello] = useState('')
-
-  useEffect(() => {
-    axios.get('/api/hello')
-        .then(response => setHello(response.data))
-        .catch(error => console.log(error))
-  }, []);
-
-  return (
-      <div>
-        from Spring Boot : {hello}
-      </div>
-  );
+    return (
+        <div className="testWrap">
+            <div className="testBlock">
+                <SignIn></SignIn>
+            </div>
+            <div className="testBlock">
+                <SignUp></SignUp>
+            </div>
+        </div>
+    );
 }
 
 export default App;

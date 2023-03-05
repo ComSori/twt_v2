@@ -4,7 +4,6 @@ import com.comsori.twt.data.dto.UserJoinDto;
 import com.comsori.twt.data.dto.UserUpdateDto;
 import com.comsori.twt.data.entity.User;
 import com.comsori.twt.repository.UserRepository;
-import org.springframework.security.config.core.userdetails.UserDetailsResourceFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
