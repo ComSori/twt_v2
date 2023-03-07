@@ -1,15 +1,20 @@
 package com.comsori.twt.service;
 
-import com.comsori.twt.data.dto.TeamDto;
+import com.comsori.twt.data.dto.TeamBuildDto;
+import com.comsori.twt.data.dto.TeamMemberDto;
 import com.comsori.twt.data.dto.TeamResponseDto;
-import com.comsori.twt.data.entity.Team;
+import com.comsori.twt.data.dto.TeamUpdateDto;
 
 public interface TeamService {
-    TeamResponseDto saveTeam(TeamDto teamDto);
+    void buildTeam(TeamBuildDto teamBuildDto);
 
-    TeamResponseDto getTeam(TeamDto teamDto);
+    void joinTeam(TeamMemberDto teamMemberDto);
 
-    TeamResponseDto updateTeam(TeamDto teamDto);
+    TeamResponseDto getTeam(TeamBuildDto teamBuildDto);
+
+    TeamResponseDto updateTeam(TeamUpdateDto teamUpdateDto);
+
+    TeamResponseDto memberInvite(TeamMemberDto teamMemberDto);
 
     void deleteTeam(String teamId);
 
