@@ -20,17 +20,6 @@ public class TeamApiController {
         this.teamService=teamService;
     }
 
-    @PostMapping("/build")
-<<<<<<< HEAD
-    public ResponseEntity<String> teamBuild(@RequestBody TeamDto teamDto){
-
-=======
-    public ResponseEntity<String> teamBuild(@RequestBody TeamBuildDto teamBuildDto){
-        teamService.buildTeam(teamBuildDto);//Todo [jhs]: not
-        return new ResponseEntity<String>("팀생성 성공", HttpStatus.OK);
->>>>>>> HS
-    }
-
     @PostMapping("/join")
     public ResponseEntity<String> teamJoin(@RequestBody TeamMemberDto teamMemberDto){
         teamService.joinTeam(teamMemberDto);
