@@ -1,11 +1,11 @@
 package com.comsori.twt.service.impl;
 
-import com.comsori.twt.data.dto.TeamDto;
+import com.comsori.twt.data.dto.TeamBuildDto;
 import com.comsori.twt.data.dto.TeamMemberDto;
 import com.comsori.twt.data.dto.TeamResponseDto;
 import com.comsori.twt.data.dto.TeamUpdateDto;
+import com.comsori.twt.data.entity.BelongedTeam;
 import com.comsori.twt.data.entity.Team;
-import com.comsori.twt.data.entity.User;
 import com.comsori.twt.repository.TeamRepository;
 import com.comsori.twt.repository.UserRepository;
 import com.comsori.twt.service.TeamService;
@@ -27,15 +27,15 @@ public class TeamServiceImpl implements TeamService  {
     }
 
     @Override
-    public void buildTeam(TeamDto teamDto){
+    public void buildTeam(TeamBuildDto teamBuildDto){
         //todo [jhs] : 토큰인증후 팀생성으로 builder 코드 변경 +id isEmpty 검증, 실패 처리 (현재 미완)
         Team team=new Team();
-        team.setTeamId(teamDto.getTeamId());
-        team.setTeamName(teamDto.getTeamName());
-        team.setTeamPassword(teamDto.getTeamPassword());
-        team.setTeamLeader(/*jwt*/);
+        team.setTeamId(teamBuildDto.getTeamId());
+        team.setTeamName(teamBuildDto.getTeamName());
+        team.setTeamPassword(teamBuildDto.getTeamPassword());
+        //team.setTeamLeader(/*jwt*/);
         //team.setTeamCloud(auto);
-        team.setBelongedTeam(/*jwt*/);
+        //team.setBelongedTeam(/*jwt*/);
 
         Team savedTeam=teamRepository.save(team);
     }
@@ -46,15 +46,21 @@ public class TeamServiceImpl implements TeamService  {
         Team foundTeam=teamRepository.findById(teamMemberDto.getTeamId()).get();
         if(!bCryptPasswordEncoder.matches(teamMemberDto.getTeamPassword(), foundTeam.getTeamPassword()))
             throw new RuntimeException();
-
-        Team team;
-
-
+        BelongedTeam belongedTeam;
+        belongedTeam=BelongedTeam.builder()
+                .user(userRepository.findById(teamMemberDto.getUserId()).get())
+                .team(teamRepository.findById(teamMemberDto.getTeamId()).get())
+                .build();
+        //foundTeam.setBelongedTeam(belongedTeamRepository);
+        teamRepository.save(foundTeam);
     }
 
     @Override
-    public TeamResponseDto getTeam(TeamDto teamDto){
-        //todo [jhs] : 팀정보 회기능 구현
+    public TeamResponseDto getTeam(String teamId, String userId){
+        //todo [jhs] : 팀정보 조회기능 구현, 조회하려는 팀내 userId가 있는지 검증 +belonged team repository 회의
+        if(!bCryptPasswordEncoder.matches(teamMemberDto)){
+
+        }
         return null;
     }
 
@@ -74,5 +80,4 @@ public class TeamServiceImpl implements TeamService  {
     public void deleteTeam(String teamId){
         teamRepository.deleteById(teamId);
     }
-
 }

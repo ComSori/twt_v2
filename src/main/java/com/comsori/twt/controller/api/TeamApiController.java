@@ -1,9 +1,11 @@
 package com.comsori.twt.controller.api;
 
-import com.comsori.twt.data.dto.TeamDto;
+import com.comsori.twt.data.dto.TeamBuildDto;
+import com.comsori.twt.data.dto.TeamMemberDto;
 import com.comsori.twt.data.dto.TeamResponseDto;
 import com.comsori.twt.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,14 +21,22 @@ public class TeamApiController {
     }
 
     @PostMapping("/build")
-    public ResponseEntity<String> teamBuild(@RequestBody TeamDto teamDto){
-        teamService.
+    public ResponseEntity<String> teamBuild(@RequestBody TeamBuildDto teamBuildDto){
+        teamService.buildTeam(teamBuildDto);//Todo [jhs]:
+        return new ResponseEntity<String>("팀생성 성공", HttpStatus.OK);
     }
 
     @PostMapping("/join")
-    public ResponseEntity<String> teamJoin(@RequestParam)
+    public ResponseEntity<String> teamJoin(@RequestBody TeamMemberDto teamMemberDto){
+        teamService.joinTeam(teamMemberDto);
+        return new ResponseEntity<>("팀 가입 성공",HttpStatus.OK);
+    }
 
-    @PostMapping("/{team}")
+    @GetMapping("/{team}")
+    public ResponseEntity<TeamResponseDto> teamGet(
+            @PathVariable(value="team") String team,@RequestHeader(value = "Authorization") String token){
+
+    }
 
     @PutMapping("/setting/{team}")
 

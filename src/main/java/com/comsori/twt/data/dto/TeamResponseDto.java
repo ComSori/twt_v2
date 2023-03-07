@@ -19,6 +19,5 @@ public class TeamResponseDto {
     //private String teamPassword;
     private String teamLeader;
     //private String teamCloud;
-    private List<Post> posts;
     private List<BelongedTeam> belongedTeams;
 }
