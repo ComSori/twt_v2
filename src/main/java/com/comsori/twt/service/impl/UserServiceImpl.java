@@ -1,19 +1,20 @@
-package com.comsori.twt.service;
+package com.comsori.twt.service.impl;
 
 import com.comsori.twt.data.dto.UserJoinDto;
 import com.comsori.twt.data.dto.UserUpdateDto;
 import com.comsori.twt.data.entity.User;
 import com.comsori.twt.repository.UserRepository;
+import com.comsori.twt.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
