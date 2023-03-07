@@ -26,7 +26,7 @@ public class TeamApiController {
 
 =======
     public ResponseEntity<String> teamBuild(@RequestBody TeamBuildDto teamBuildDto){
-        teamService.buildTeam(teamBuildDto);//Todo [jhs]:
+        teamService.buildTeam(teamBuildDto);//Todo [jhs]: not
         return new ResponseEntity<String>("팀생성 성공", HttpStatus.OK);
 >>>>>>> HS
     }
