@@ -20,17 +20,6 @@ public class TeamApiController {
         this.teamService=teamService;
     }
 
-    @PostMapping("/join")
-    public ResponseEntity<String> teamJoin(@RequestBody TeamMemberDto teamMemberDto){
-        teamService.joinTeam(teamMemberDto);
-        return new ResponseEntity<>("팀 가입 성공",HttpStatus.OK);
-    }
-
-    @GetMapping("/{team}")
-    public ResponseEntity<TeamResponseDto> teamGet(
-            @PathVariable(value="team") String team,@RequestHeader(value = "Authorization") String token){
-
-    }
 
     @PutMapping("/setting/{team}")
 
