@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import KakaoLogo from './img/kakao_login_icon.png'
 import SignUp from './SignUp'
 
 const testUser={
@@ -69,6 +70,10 @@ export default function SignIn() {
                 <button disabled={notAllow} className="formButton" onClick={onClickSignIn}>
                     확인
                 </button>
+            </div>
+
+            <div className="otherLogin">
+                <img src={KakaoLogo} alt="kakao_login_icon.png" />
             </div>
         </div>
     );

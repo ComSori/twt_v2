@@ -9,9 +9,7 @@ function App() {
             <div className="testBlock">
                 <SignIn></SignIn>
             </div>
-            <div className="testBlock">
-                <SignUp></SignUp>
-            </div>
+
         </div>
     );
 }
