@@ -34,6 +34,9 @@ public class User {
     private String userUniversity;
 
     @Column
+    private String userRole;
+
+    @Column
     private String userDefaultTeam;
 
     @OneToMany(mappedBy = "user")

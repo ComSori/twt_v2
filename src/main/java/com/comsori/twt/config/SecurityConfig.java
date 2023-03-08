@@ -25,12 +25,8 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                // front 패키지 구조 나오면 로그인 페이지로 바꾸기(로그인 페이지로)
-                .loginPage("/signin")
-                // front 패키지 구조 나오면 로그인 페이지로 바꾸기(로그인 요청 주소로)
-                .loginProcessingUrl("/login")
+                .usernameParameter("userId")
                 .defaultSuccessUrl("/");
-
         return http.build();
     }
 }
