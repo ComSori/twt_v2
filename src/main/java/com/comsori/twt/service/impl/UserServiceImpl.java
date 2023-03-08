@@ -1,5 +1,6 @@
 package com.comsori.twt.service.impl;
 
+<<<<<<<< HEAD:src/main/java/com/comsori/twt/service/impl/UserServiceImpl.java
 import com.comsori.twt.data.dto.UserJoinDto;
 import com.comsori.twt.data.dto.UserUpdateDto;
 import com.comsori.twt.data.entity.User;
@@ -54,4 +55,14 @@ public class UserServiceImpl implements UserService {
     public boolean validationCheckUser(String userId) {
         return userRepository.existsByUserId(userId);
     }
+========
+import com.comsori.twt.data.dto.*;
+
+public interface UserService {
+    public void insertUser(UserJoinDto userJoinDto);
+    public void updateUser(UserUpdateDto userUpdateDto);
+    public void deleteUser(String userId);
+
+    public boolean validationCheckUser(String userId);
+>>>>>>>> 3b17d6ac99472f36e7d9ee46c82d3cdd31f75dfa:src/main/java/com/comsori/twt/service/UserService.java
 }
