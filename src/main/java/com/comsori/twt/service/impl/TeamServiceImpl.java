@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TeamServiceImpl implements TeamService  {
-    //todo [jhs] : 리더 이관, 팀원 초대 강퇴기능 구현
+    //todo [jhs] : 팀원 초대 강퇴기능 구현
     private TeamRepository teamRepository;
     private UserRepository userRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -32,12 +32,11 @@ public class TeamServiceImpl implements TeamService  {
         Team team=new Team();
         team.setTeamId(teamBuildDto.getTeamId());
         team.setTeamName(teamBuildDto.getTeamName());
-        team.setTeamPassword(teamBuildDto.getTeamPassword());
-        //team.setTeamLeader(/*jwt*/);
+        team.setTeamPassword(bCryptPasswordEncoder.encode(teamBuildDto.getTeamPassword()));
+        team.setTeamLeader(teamBuildDto.getTeamLeader());
         //team.setTeamCloud(auto);
         //team.setBelongedTeam(/*jwt*/);
-
-        Team savedTeam=teamRepository.save(team);
+        teamRepository.save(team);
     }
 
     @Override
@@ -58,7 +57,8 @@ public class TeamServiceImpl implements TeamService  {
     @Override
     public TeamResponseDto getTeam(String teamId, String userId){
         //todo [jhs] : 팀정보 조회기능 구현, 조회하려는 팀내 userId가 있는지 검증 +belonged team repository 회의
-        if(!bCryptPasswordEncoder.matches(teamMemberDto)){
+        Team foundTeam=teamRepository.findById(teamId);
+        if(!bCryptPasswordEncoder.matches(teamId)){
 
         }
         return null;
