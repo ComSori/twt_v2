@@ -2,6 +2,7 @@ package com.comsori.twt.controller.api;
 
 import com.comsori.twt.config.SecurityConfig;
 import com.comsori.twt.data.dto.TeamBuildDto;
+import com.comsori.twt.data.dto.TeamDto;
 import com.comsori.twt.data.dto.TeamMemberDto;
 import com.comsori.twt.data.dto.TeamResponseDto;
 import com.comsori.twt.service.TeamService;
@@ -23,8 +24,9 @@ public class TeamApiController {
         this.teamService=teamService;
     }
 
-    @GetMapping("{team}")
-    public ResponseEntity<TeamResponseDto> teamGet(@RequestParam String teamId, @RequestHeader(value="Authorization")String payload){
+    @GetMapping("/{team}")
+    public ResponseEntity<TeamResponseDto> teamGet(
+            @PathVariable(value="team") String teamId, @RequestHeader(value="Authorization")String payload){
         Authentication auth= SecurityContextHolder.getContext().getAuthentication();
         return teamService.getTeam(teamId,auth.getPrincipal().toString());
     }
@@ -42,8 +44,16 @@ public class TeamApiController {
         return new ResponseEntity<>("팀 가입 성공",HttpStatus.OK);
     }
     @PutMapping("/setting/{team}")
-    public ResponseEntity<TeamResponseDto> team
+    public ResponseEntity<TeamResponseDto> teamSetting(@RequestBody TeamDto teamDto){
+        TeamResponseDto teamResponseDto=teamService.setTeam(teamDto);
+        return new ResponseEntity<TeamResponseDto>(teamResponseDto);
+
+    }
 
     @DeleteMapping("/delete")
+    public ResponseEntity<String> teamDelete(@RequestBody TeamMemberDto teamMemberDto){
+        teamService.deleteTeam(teamMemberDto);
+        return new ResponseEntity<String>("팀 삭제 성공", HttpStatus.OK);
+    }
 
 }

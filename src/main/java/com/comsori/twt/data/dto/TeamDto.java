@@ -10,8 +10,10 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TeamUpdateDto {
+public class TeamDto {
     private String teamId;
     private String teamName;
     private String teamPassword;
+    private String teamLeader;
+    private List<BelongedTeam> belongedTeams;
 }

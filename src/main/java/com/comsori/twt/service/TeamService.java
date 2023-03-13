@@ -3,7 +3,7 @@ package com.comsori.twt.service;
 import com.comsori.twt.data.dto.TeamBuildDto;
 import com.comsori.twt.data.dto.TeamMemberDto;
 import com.comsori.twt.data.dto.TeamResponseDto;
-import com.comsori.twt.data.dto.TeamUpdateDto;
+import com.comsori.twt.data.dto.TeamDto;
 
 public interface TeamService {
     void buildTeam(TeamBuildDto teamBuildDto);
@@ -12,10 +12,10 @@ public interface TeamService {
 
     TeamResponseDto getTeam(TeamBuildDto teamBuildDto);
 
-    TeamResponseDto updateTeam(TeamUpdateDto teamUpdateDto);
+    TeamResponseDto updateTeam(TeamDto teamDto);
 
     TeamResponseDto memberInvite(TeamMemberDto teamMemberDto);
 
-    void deleteTeam(String teamId);
+    void deleteTeam(TeamMemberDto teamMemberDto);
 
 }
