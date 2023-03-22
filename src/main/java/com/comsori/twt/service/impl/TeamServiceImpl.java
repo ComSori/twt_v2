@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TeamServiceImpl implements TeamService  {
-    //todo [jhs] : 팀원 초대 강퇴기능 구현
+    //todo [jhs] : 추후 팀원 초대 강퇴기능 구현
     private TeamRepository teamRepository;
     private UserRepository userRepository;
     private BelongedTeamRepository belongedTeamRepository;
@@ -35,7 +35,7 @@ public class TeamServiceImpl implements TeamService  {
 
     @Override
     public void buildTeam(TeamBuildDto teamBuildDto){
-        //todo [jhs] : 토큰인증후 팀생성으로 builder 코드 변경 +id isEmpty 검증, 실패 처리 (현재 미완)
+        //todo [jhs] : 검증, 실패 처리 (현재 미완)
         //Team builder()
         Team team;
         team=Team.builder()
@@ -75,27 +75,37 @@ public class TeamServiceImpl implements TeamService  {
     public TeamResponseDto getTeam(String teamId, String userId){
         //todo [jhs] : 팀정보 조회기능 구현, 조회하려는 팀내 userId가 있는지 검증 +belonged team repository 회의
         Team foundTeam=teamRepository.findById(teamId).get();
-        if(!bCryptPasswordEncoder.matches(foundTeam.getBelongedTeam().)){
+        if(!bCryptPasswordEncoder.matches(foundTeam.getBelongedTeam().get())){
 
         }
         return null;
     }
-
     @Override
     public TeamResponseDto updateTeam(TeamDto teamDto){
-        //팀 설정(이름, pw만 변경가능)
+        //팀 설정
         Team foundTeam=teamRepository.findById(teamDto.getTeamId()).get();
         foundTeam.setTeamName(teamDto.getTeamName());
         foundTeam.setTeamPassword(teamDto.getTeamPassword());
+        foundTeam.setTeamLeader(teamDto.getTeamLeader());
+        foundTeam.setBelongedTeam(teamDto.getBelongedTeams());
 
-        Team changedTeam=teamRepository.save(foundTeam);
+        TeamResponseDto changedTeam=new TeamResponseDto();
+        changedTeam.builder()
+                .teamId(foundTeam.getTeamId())
+                .teamName(foundTeam.getTeamName())
+                .teamLeader(foundTeam.getTeamLeader())
+                .belongedTeams(foundTeam.getBelongedTeam())
+                .build();
 
-        return null;
+        return changedTeam;
+    }
+
+    boolean checkTeam(String teamId){
+        return false;
     }
 
     @Override
     public void deleteTeam(TeamMemberDto teamMemberDto){
-
-        teamRepository.deleteById(teamId);
+        teamRepository.deleteById(teamMemberDto.getTeamId());
     }
 }

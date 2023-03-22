@@ -26,9 +26,16 @@ public class TeamApiController {
 
     @GetMapping("/{team}")
     public ResponseEntity<TeamResponseDto> teamGet(
-            @PathVariable(value="team") String teamId, @RequestHeader(value="Authorization")String payload){
+            @PathVariable(value="team") String teamId,
+            @RequestHeader(value="Authorization")String payload){
+        //todo [jhs] : 검증 추가, team service에 검증 메서드 추가, 검증후 오류 및 실패처리
         Authentication auth= SecurityContextHolder.getContext().getAuthentication();
         return teamService.getTeam(teamId,auth.getPrincipal().toString());
+    }
+    @GetMapping("/check")
+    public ResponseEntity<?> teamCheck(@RequestParam String id){
+        //todo [jhs] : 팀 아이디 검사 기능 추가
+        return new ResponseEntity<>("성공",HttpStatus.OK)
     }
     @PostMapping("/build")
     public ResponseEntity<String> teamBuild(@RequestBody TeamBuildDto teamBuildDto){
@@ -44,10 +51,9 @@ public class TeamApiController {
         return new ResponseEntity<>("팀 가입 성공",HttpStatus.OK);
     }
     @PutMapping("/setting/{team}")
-    public ResponseEntity<TeamResponseDto> teamSetting(@RequestBody TeamDto teamDto){
-        TeamResponseDto teamResponseDto=teamService.setTeam(teamDto);
-        return new ResponseEntity<TeamResponseDto>(teamResponseDto);
-
+    public TeamResponseDto teamSetting(@RequestBody TeamDto teamDto){
+        TeamResponseDto teamResponseDto=teamService.updateTeam(teamDto);
+        return teamResponseDto;
     }
 
     @DeleteMapping("/delete")

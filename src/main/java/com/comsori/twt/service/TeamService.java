@@ -16,6 +16,11 @@ public interface TeamService {
 
     TeamResponseDto memberInvite(TeamMemberDto teamMemberDto);
 
+    boolean checkTeam(String teamId);
+
+    boolean checkUser(String teamId,String userId);
+
+
     void deleteTeam(TeamMemberDto teamMemberDto);
 
 }
