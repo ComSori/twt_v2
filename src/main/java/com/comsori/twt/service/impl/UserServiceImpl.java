@@ -3,6 +3,7 @@ package com.comsori.twt.service.impl;
 import com.comsori.twt.data.dto.UserJoinDto;
 import com.comsori.twt.data.dto.UserUpdateDto;
 import com.comsori.twt.data.entity.User;
+import com.comsori.twt.data.type.RoleType;
 import com.comsori.twt.repository.UserRepository;
 import com.comsori.twt.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +24,11 @@ public class UserServiceImpl implements UserService {
     public void insertUser(UserJoinDto userJoinDto) {
         String encPwd = bCryptPasswordEncoder.encode(userJoinDto.getUserPassword());
         userJoinDto.setUserPassword(encPwd);
-        userRepository.save(userJoinDto.toEntity());
+
+        User userEntity = userJoinDto.toEntity();
+        userEntity.setUserRole(RoleType.USER);
+
+        userRepository.save(userEntity);
     }
 
     @Transactional

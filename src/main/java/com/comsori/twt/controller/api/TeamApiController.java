@@ -21,8 +21,8 @@ public class TeamApiController {
     }
 
 
-    @PutMapping("/setting/{team}")
-
-    @DeleteMapping("/delete")
+//    @PutMapping("/setting/{team}")
+//
+//    @DeleteMapping("/delete")
 
 }

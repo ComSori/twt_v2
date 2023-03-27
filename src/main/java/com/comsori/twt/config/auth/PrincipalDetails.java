@@ -1,6 +1,7 @@
 package com.comsori.twt.config.auth;
 
 import com.comsori.twt.data.entity.User;
+import com.comsori.twt.data.type.RoleType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -21,7 +22,7 @@ public class PrincipalDetails implements UserDetails {
         Collection<GrantedAuthority> collection = new ArrayList<>();
 
         collection.add(() -> {
-            return user.getUserRole();
+            return user.getUserRole().toString();
         });
 
         return collection;
@@ -57,7 +58,7 @@ public class PrincipalDetails implements UserDetails {
         return user.getUserDefaultTeam();
     }
 
-    public String getUserRole() {
+    public RoleType getUserRole() {
         return user.getUserRole();
     }
 

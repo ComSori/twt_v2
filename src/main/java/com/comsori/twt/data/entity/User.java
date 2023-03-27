@@ -1,5 +1,6 @@
 package com.comsori.twt.data.entity;
 
+import com.comsori.twt.data.type.RoleType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +35,7 @@ public class User {
     private String userUniversity;
 
     @Column
-    private String userRole;
+    private RoleType userRole;
 
     @Column
     private String userDefaultTeam;
